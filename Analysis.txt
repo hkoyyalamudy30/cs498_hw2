@@ -1,0 +1,14 @@
+The latency results were:
+
+US /register: 249.04 ms
+EU /register: 617.33 ms
+US /list: 108.15 ms
+EU /list: 506.33 ms
+
+The eventual consistency results were:
+
+Misses (not found immediately): 0 out of 100
+
+The latency for the US is significantly lower than that of the EU. I feel like this is expected, as we are closer to the server in the US than in Europe. Since the requests to Europe need to go across the atlantic this increases the round-trip time. Moreover, network congestion and inter-region routing could contribute to higher observed latency. 
+
+In the eventual consistency, 0 misses were seen across 100 trials. This shows that replication between regions happened quickly enough that the writes were visible immediately upon reading the other region. In practice, the propagation delay was so small that no stale reads were made during this testing. 
